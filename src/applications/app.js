@@ -49,6 +49,6 @@ export function getAppChanges() {
         }
     }
   });
-  console.log(appsToLoad, appsToMount, appsToUnmount);
+  // console.log(appsToLoad, appsToMount, appsToUnmount);
   return { appsToLoad, appsToMount, appsToUnmount };
 }

@@ -1,5 +1,5 @@
 /**
- * @description: 挂载应用
+ * @description:
  * @param {type}
  * @return {type}
  */

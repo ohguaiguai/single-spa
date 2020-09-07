@@ -7,17 +7,6 @@
   </head>
   <body>
     <script src="/lib/umd/single-spa.js"></script>
-    <a onclick="a()">应用1</a>
-    <a onclick="b()">应用2</a>
-
-    <script>
-      function a() {
-        window.history.pushState({}, '这是a', '/app1');
-      }
-      function b() {
-        window.history.pushState({}, '这是b', '/app2');
-      }
-    </script>
     <script>
       // 参数， 1. 注册应用的名字 2. 加载app的方法，这个方法应该返回一个promise方法
       singleSpa.registerApplication(
@@ -38,7 +27,7 @@
             },
           };
         },
-        (location) => location.pathname.startsWith('/app1'), // 根据路径来判断是否应该加载
+        (location) => location.hash.startsWith('#app1'), // 根据路径来判断是否应该加载
         { store: { name: 'zx', age: 25 } }
       );
       singleSpa.registerApplication(
@@ -59,7 +48,7 @@
             },
           };
         },
-        (location) => location.pathname.startsWith('/app2'), // 根据路径来判断是否应该加载
+        (location) => location.hash.startsWith('#app2'), // 根据路径来判断是否应该加载
         { store: { name: 'zx', age: 25 } }
       );
       // registerApplication 默认会加载应用
