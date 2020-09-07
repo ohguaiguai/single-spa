@@ -44,7 +44,7 @@ function patchedUpdateState(updateState, methodName) {
     const result = updateState.apply(this, arguments);
     const urlAfter = window.location.href;
     if (urlBefore !== urlAfter) {
-      urlReroute(new PopStateEvent('popstate')); // 重新加载
+      urlReroute(new PopStateEvent('popstate')); // 重新加载应用，传入事件源, 事件源就是new PopStateEvent('popstate'), 作为urlReroute方法的arguments
     }
     return result;
   };
@@ -59,7 +59,7 @@ window.history.replaceState = patchedUpdateState(
   'replaceState'
 );
 
-// 在子应用加载完毕后调用此方法，执行拦截的逻辑（保证子应用加载完后执行）
+// 在子应用加载完毕后调用此方法，执行拦截的逻辑（保证子应用加载完后执行）, 执行用户自定义的监听事件
 export function callCapturedEventListeners(eventArguments) {
   if (eventArguments) {
     const eventType = eventArguments[0].type;
